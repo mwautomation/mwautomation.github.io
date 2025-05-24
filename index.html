@@ -69,16 +69,14 @@
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-brand-dark text-white font-medium
-                               transform -translate-y-full transition-transform duration-300 origin-top">
-    <nav class="flex flex-col gap-6 p-6">
-      <a href="#about" class="hover:text-brand-light">About</a>
-      <a href="#services" class="hover:text-brand-light">Services</a>
-      <a href="#process" class="hover:text-brand-light">Process</a>
-      <a href="#contact" class="hover:text-brand-light">Contact</a>
-    </nav>
-  </div>
-</header>
+<div id="mobileMenu" class="md:hidden fixed inset-0 z-40 bg-brand-dark text-white font-medium translate-y-full transition-transform duration-300">
+  <nav class="flex flex-col gap-6 p-6 pt-20">
+    <a href="#about"    class="hover:text-brand-light">About</a>
+    <a href="#services" class="hover:text-brand-light">Services</a>
+    <a href="#process"  class="hover:text-brand-light">Process</a>
+    <a href="#contact"  class="hover:text-brand-light">Contact</a>
+  </nav>
+</div>
 
 <!-- Dark overlay -->
 <div id="menuOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"></div>
@@ -193,15 +191,15 @@
 </footer>
 
 <script>
-// ===== Mobile menu logic =====
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const menuOverlay = document.getElementById('menuOverlay');
-const iconOpen = document.getElementById('iconOpen');
-const iconClose = document.getElementById('iconClose');
+/* ===== mobile drawer logic ===== */
+const menuBtn      = document.getElementById('menuBtn');
+const mobileMenu   = document.getElementById('mobileMenu');
+const menuOverlay  = document.getElementById('menuOverlay');
+const iconOpen     = document.getElementById('iconOpen');
+const iconClose    = document.getElementById('iconClose');
 
-function openMenu() {
-  mobileMenu.classList.remove('-translate-y-full');
+function openMenu () {
+  mobileMenu.classList.remove('translate-y-full');  // was -translate-y-full
   menuOverlay.classList.remove('hidden');
   document.body.classList.add('overflow-hidden');
   menuBtn.setAttribute('aria-expanded', 'true');
@@ -209,8 +207,8 @@ function openMenu() {
   iconClose.classList.remove('hidden');
 }
 
-function closeMenu() {
-  mobileMenu.classList.add('-translate-y-full');
+function closeMenu () {
+  mobileMenu.classList.add('translate-y-full');
   menuOverlay.classList.add('hidden');
   document.body.classList.remove('overflow-hidden');
   menuBtn.setAttribute('aria-expanded', 'false');
@@ -218,25 +216,17 @@ function closeMenu() {
   iconClose.classList.add('hidden');
 }
 
-function toggleMenu() {
-  const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
-  if (isOpen) {
-    closeMenu();
-  } else {
-    openMenu();
-  }
-}
-
-menuBtn.addEventListener('click', toggleMenu);
+menuBtn.addEventListener('click', () =>
+  menuBtn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu()
+);
 menuOverlay.addEventListener('click', closeMenu);
 
-// Close the menu when a nav link is clicked
-mobileMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', closeMenu);
-});
+/* close drawer after tapping a link */
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-// Auto‑update year
+/* footer year */
 document.getElementById('year').textContent = new Date().getFullYear();
+
 </script>
 
 </body>
