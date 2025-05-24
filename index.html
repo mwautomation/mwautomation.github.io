@@ -23,7 +23,7 @@
         },
         fontFamily: {
           sans: ['Inter','ui-sans-serif','system-ui']
-        }
+        },
       }
     }
   }
@@ -53,16 +53,25 @@
       <a href="#process" class="hover:text-brand-light">Process</a>
       <a href="#contact" class="hover:text-brand-light">Contact</a>
     </nav>
+
     <!-- Mobile hamburger -->
-    <button id="menuBtn" class="md:hidden text-white focus:outline-none" aria-label="Open menu">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+    <button id="menuBtn" aria-label="Toggle navigation" aria-controls="mobileMenu" aria-expanded="false"
+            class="relative z-50 md:hidden text-white focus:outline-none">
+      <!-- Hamburger icon -->
+      <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <!-- Close (X) icon -->
+      <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
   </div>
+
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="md:hidden hidden bg-brand-dark">
-    <nav class="flex flex-col gap-4 p-6 text-white font-medium">
+  <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-brand-dark text-white font-medium
+                               transform -translate-y-full transition-transform duration-300 origin-top">
+    <nav class="flex flex-col gap-6 p-6">
       <a href="#about" class="hover:text-brand-light">About</a>
       <a href="#services" class="hover:text-brand-light">Services</a>
       <a href="#process" class="hover:text-brand-light">Process</a>
@@ -70,6 +79,9 @@
     </nav>
   </div>
 </header>
+
+<!-- Dark overlay -->
+<div id="menuOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"></div>
 
 <!-- ======== Hero ========= -->
 <section id="hero" class="min-h-[75vh] flex flex-col items-center justify-center text-center px-4
@@ -180,9 +192,46 @@
 </footer>
 
 <script>
-// Mobile menu toggle
-document.getElementById('menuBtn').addEventListener('click', () => {
-  document.getElementById('mobileMenu').classList.toggle('hidden');
+// ===== Mobile menu logic =====
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const iconOpen = document.getElementById('iconOpen');
+const iconClose = document.getElementById('iconClose');
+
+function openMenu() {
+  mobileMenu.classList.remove('-translate-y-full');
+  menuOverlay.classList.remove('hidden');
+  document.body.classList.add('overflow-hidden');
+  menuBtn.setAttribute('aria-expanded', 'true');
+  iconOpen.classList.add('hidden');
+  iconClose.classList.remove('hidden');
+}
+
+function closeMenu() {
+  mobileMenu.classList.add('-translate-y-full');
+  menuOverlay.classList.add('hidden');
+  document.body.classList.remove('overflow-hidden');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  iconOpen.classList.remove('hidden');
+  iconClose.classList.add('hidden');
+}
+
+function toggleMenu() {
+  const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+  if (isOpen) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+}
+
+menuBtn.addEventListener('click', toggleMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+// Close the menu when a nav link is clicked
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMenu);
 });
 
 // Auto‑update year
