@@ -1,148 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MW AI Automation | Practical AI for Small Business</title>
-  <!-- Tailwind CSS via CDN -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>MW AI Solutions</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            light: '#36D5EC',
+            DEFAULT: '#0170C9',
+            dark: '#0027B3'
+          }
+        },
+        fontFamily: {
+          sans: ['Inter','ui-sans-serif','system-ui']
+        }
+      }
+    }
+  }
+  </script>
+
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    html{scroll-behavior:smooth;}
   </style>
 </head>
-<body class="antialiased text-gray-800">
-  <!-- Header & Navigation -->
-  <header class="bg-white/80 backdrop-blur-md fixed top-0 inset-x-0 z-50 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="#" class="text-2xl font-bold text-indigo-600">MW<span class="text-gray-900">AI</span></a>
-      <nav id="nav-menu" class="hidden md:flex space-x-8 text-sm font-medium">
-        <a href="#about" class="hover:text-indigo-600">About</a>
-        <a href="#services" class="hover:text-indigo-600">Services</a>
-        <a href="#process" class="hover:text-indigo-600">Process</a>
-        <a href="#contact" class="hover:text-indigo-600">Contact</a>
-      </nav>
-      <!-- Hamburger -->
-      <button id="nav-toggle" class="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+<body class="font-sans text-gray-700 leading-relaxed">
+
+<!-- ======== Header / Nav ========= -->
+<header class="fixed inset-x-0 top-0 z-50 bg-white/10 backdrop-blur-sm transition-shadow">
+  <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
+    <a href="#" class="flex items-center gap-2 text-lg font-semibold text-white">
+      <!-- Replace with your SVG -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-light" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l9.5 5.5v9L12 22 2.5 16.5v-9L12 2z"/></svg>
+      MW
+    </a>
+    <nav class="hidden md:flex gap-6 text-white font-medium">
+      <a href="#about" class="hover:text-brand-light">About</a>
+      <a href="#services" class="hover:text-brand-light">Services</a>
+      <a href="#process" class="hover:text-brand-light">Process</a>
+      <a href="#contact" class="hover:text-brand-light">Contact</a>
+    </nav>
+    <!-- Mobile hamburger -->
+    <button id="menuBtn" class="md:hidden text-white focus:outline-none" aria-label="Open menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden bg-brand-dark">
+    <nav class="flex flex-col gap-4 p-6 text-white font-medium">
+      <a href="#about" class="hover:text-brand-light">About</a>
+      <a href="#services" class="hover:text-brand-light">Services</a>
+      <a href="#process" class="hover:text-brand-light">Process</a>
+      <a href="#contact" class="hover:text-brand-light">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ======== Hero ========= -->
+<section id="hero" class="min-h-[75vh] flex flex-col items-center justify-center text-center px-4
+               text-white bg-gradient-to-r from-brand-light via-brand to-brand-dark">
+  <img src="assets/mw-logo.svg" alt="MW AI Solutions logo"
+       class="h-24 md:h-28 mb-6 drop-shadow-lg" />
+  <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
+    MW&nbsp;AI Solutions
+  </h1>
+  <p class="text-lg md:text-2xl font-medium mb-8 max-w-2xl">
+    Automate your business’s hurdles away.
+  </p>
+  <a href="#contact"
+     class="inline-block rounded-full px-8 py-3 font-semibold
+            bg-white text-brand-dark shadow-lg transition
+            hover:bg-brand-light hover:text-white">
+     Let’s talk
+  </a>
+</section>
+
+<!-- ======== About ========= -->
+<section id="about" class="py-20 px-6 md:px-0 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-6 text-center">About Us</h2>
+    <p class="text-lg">
+      We’re a boutique AI &amp; ML engineering studio helping small‑to‑mid businesses streamline operations, cut costs, and unlock new revenue with intelligent automation. From Azure‑native pipelines to fully open‑source stacks, we tailor solutions that fit both your workflow and your wallet.
+    </p>
+  </div>
+</section>
+
+<!-- ======== Services ========= -->
+<section id="services" class="py-20 px-6 md:px-0 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-dark mb-12">What We Can Do</h2>
+    <div class="grid gap-8 md:grid-cols-3">
+      <!-- Card 1 -->
+      <div class="border-t-4 border-brand-light bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-semibold mb-2">Process Automation</h3>
+        <p>
+          Replace repetitive human tasks with robust, traceable workflows—think invoices, reports, approvals, you name it.
+        </p>
+      </div>
+      <!-- Card 2 -->
+      <div class="border-t-4 border-brand-light bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-semibold mb-2">Predictive Analytics</h3>
+        <p>
+          Forecast demand, detect anomalies, and spot trends early with models that keep learning from your data.
+        </p>
+      </div>
+      <!-- Card 3 -->
+      <div class="border-t-4 border-brand-light bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-semibold mb-2">Custom AI Apps</h3>
+        <p>
+          Chatbots, document classifiers, computer‑vision pipelines—built with OSS frameworks to keep licensing cost at zero.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== Process ========= -->
+<section id="process" class="py-20 px-6 md:px-0 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-dark mb-12">Our Simple 4‑Step Approach</h2>
+    <ol class="space-y-8">
+      <li class="flex items-start gap-4">
+        <span class="flex-shrink-0 h-10 w-10 rounded-full bg-brand text-white flex items-center justify-center font-bold">1</span>
+        <p><strong>Discovery Call</strong> – 30‑minute chat to map pain points and quick wins.</p>
+      </li>
+      <li class="flex items-start gap-4">
+        <span class="flex-shrink-0 h-10 w-10 rounded-full bg-brand text-white flex items-center justify-center font-bold">2</span>
+        <p><strong>Prototype</strong> – rapid proof‑of‑concept using your real data (no upfront cost).</p>
+      </li>
+      <li class="flex items-start gap-4">
+        <span class="flex-shrink-0 h-10 w-10 rounded-full bg-brand text-white flex items-center justify-center font-bold">3</span>
+        <p><strong>Iterate &amp; Integrate</strong> – agile sprints to refine, secure, and deploy the solution.</p>
+      </li>
+      <li class="flex items-start gap-4">
+        <span class="flex-shrink-0 h-10 w-10 rounded-full bg-brand text-white flex items-center justify-center font-bold">4</span>
+        <p><strong>Support</strong> – hand‑over docs, training, and optional maintenance SLA.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======== Contact ========= -->
+<section id="contact" class="py-20 px-6 md:px-0 bg-gradient-to-r from-brand-light via-brand to-brand-dark text-white text-center">
+  <div class="max-w-xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Let’s Build Something</h2>
+    <p class="mb-8 text-lg">Ready to kick your process into overdrive? Drop a message and we’ll reply within one business day.</p>
+    <!-- Email link -->
+    <a href="mailto:hello@mw-ai.solutions"
+       class="inline-block bg-white text-brand-dark font-semibold px-10 py-3 rounded-full shadow-md
+              hover:bg-brand-light hover:text-white transition">
+       Email us
+    </a>
+    <!-- Uncomment the form below if you later hook up Formspree or similar -->
+    <!--
+    <form action="https://formspree.io/f/{your-id}" method="POST" class="space-y-4 mt-8">
+      <input type="email" name="email" required placeholder="Your email *"
+             class="w-full px-4 py-3 rounded bg-white/90 text-brand-dark placeholder-brand-dark/70">
+      <textarea name="message" rows="4" required placeholder="How can we help?"
+                class="w-full px-4 py-3 rounded bg-white/90 text-brand-dark placeholder-brand-dark/70"></textarea>
+      <button type="submit" class="bg-white text-brand-dark font-semibold px-8 py-3 rounded-full shadow-md
+                                    hover:bg-brand-light hover:text-white transition">
+        Send
       </button>
-    </div>
-  </header>
+    </form>
+    -->
+  </div>
+</section>
 
-  <!-- Hero -->
-  <section class="relative flex items-center min-h-screen pt-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700 text-white">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-        Practical AI Automation<br class="hidden sm:block" />for Small Businesses
-      </h1>
-      <p class="text-lg sm:text-xl mb-8">
-        I help companies streamline tedious processes and unlock growth—without blowing the budget.
-      </p>
-      <a href="#contact" class="inline-block bg-white text-indigo-700 font-semibold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl transition">Get in touch</a>
-    </div>
-  </section>
+<!-- Footer -->
+<footer class="py-6 text-center text-sm bg-black text-white/70">
+  © <span id="year"></span> MW AI Solutions · Piotrków Trybunalski, PL
+</footer>
 
-  <!-- About -->
-  <section id="about" class="py-20 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-4">About MW AI Automation</h2>
-      <p class="text-gray-600 leading-relaxed">
-        I'm Michał Wojciechowski, an AI/ML engineer with 8+ years of hands‑on experience delivering
-        machine‑learning products for enterprises. Now I use that know‑how to help small teams win time and market share with targeted automation projects.
-      </p>
-    </div>
-  </section>
+<script>
+// Mobile menu toggle
+document.getElementById('menuBtn').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('hidden');
+});
 
-  <!-- Services -->
-  <section id="services" class="py-20">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12">Services</h2>
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Card 1 -->
-        <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-          <div class="text-indigo-600 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16h8M8 12h8m-6 8h6M6 8h12l-1 9H7l-1-9z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Process Automation</h3>
-          <p class="text-gray-600">Identify repetitive workflows and automate them with serverless cloud functions and APIs.</p>
-        </div>
-        <!-- Card 2 -->
-        <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-          <div class="text-indigo-600 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Predictive Analytics</h3>
-          <p class="text-gray-600">Turn historical data into clear forecasts that inform smarter decisions—no PhD required.</p>
-        </div>
-        <!-- Card 3 -->
-        <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-          <div class="text-indigo-600 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 .35-.06.687-.17 1H20v2h-7.05A5.002 5.002 0 007 17h-.17a3.005 3.005 0 010-6h.34a3.005 3.005 0 013-3H12z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">LLM Integration</h3>
-          <p class="text-gray-600">Embed state‑of‑the‑art language models safely into your products to delight users and cut costs.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+// Auto‑update year
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
-  <!-- Process -->
-  <section id="process" class="py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
-      <div class="grid gap-8 md:grid-cols-3">
-        <div class="text-center">
-          <div class="text-indigo-600 text-5xl font-extrabold mb-2">1</div>
-          <h3 class="font-semibold mb-2">Free Discovery Call</h3>
-          <p class="text-gray-600">We map your workflow pain points and success criteria in 30 minutes.</p>
-        </div>
-        <div class="text-center">
-          <div class="text-indigo-600 text-5xl font-extrabold mb-2">2</div>
-          <h3 class="font-semibold mb-2">Prototype in a Week</h3>
-          <p class="text-gray-600">You get a clickable demo + cost projection so there are no surprises.</p>
-        </div>
-        <div class="text-center">
-          <div class="text-indigo-600 text-5xl font-extrabold mb-2">3</div>
-          <h3 class="font-semibold mb-2">Deploy & Iterate</h3>
-          <p class="text-gray-600">We ship, monitor ROI, and refine until automation pays for itself.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-20">
-    <div class="max-w-md mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-6">Let's Talk</h2>
-      <p class="text-gray-600 mb-8">Ready to start? Drop me a line and I'll reply within one business day.</p>
-      <a href="mailto:hello@mwai.dev" class="inline-block bg-indigo-600 text-white font-semibold px-8 py-3 rounded-2xl shadow-lg hover:bg-indigo-700 transition">Email Me</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 py-6">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <p>&copy; <span id="year"></span> MW AI Automation. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    // Mobile nav toggle
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    navToggle.addEventListener('click', () => navMenu.classList.toggle('hidden'));
-    // Copyright year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
