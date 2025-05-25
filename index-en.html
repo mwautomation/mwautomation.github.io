@@ -110,6 +110,7 @@
       <a href="#services" class="hover:text-brand-light">Services</a>
       <a href="#process"  class="hover:text-brand-light">Process</a>
       <a href="#contact"  class="hover:text-brand-light">Contact</a>
+      <a href="/index.html"    class="hover:text-brand-light">🇵🇱 Polski</a>
     </nav>
   </div>
 
@@ -268,17 +269,23 @@
     closeBtn.addEventListener('click', closeMenu);
     menuOverlay.addEventListener('click', closeMenu);
 
-    // close on link-click & scroll with header offset
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        closeMenu();
-        setTimeout(() => {
-          const headerHeight = document.querySelector('header').offsetHeight;
-          const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
-          window.scrollTo({ top: targetPos - headerHeight, behavior: 'smooth' });
-        }, 300);
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          // internal section link: prevent default and smooth-scroll
+          e.preventDefault();
+          const target = document.querySelector(href);
+          closeMenu();
+          setTimeout(() => {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({ top: targetPos - headerHeight, behavior: 'smooth' });
+          }, 300);
+        } else {
+          // external or page-switch link: just close the menu and let the browser navigate
+          closeMenu();
+        }
       });
     });
 
