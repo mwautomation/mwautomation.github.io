@@ -115,14 +115,28 @@
   </section>
 
   <!-- ======== About ========= -->
-  <section id="about" class="py-20 px-6 md:px-0 bg-white">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-6 text-center">About Us</h2>
-      <p class="text-lg">
-        Led by <strong>Michał Włodarczyk</strong> — an experienced AI/ML engineer with expertise in generative AI, Retrieval-Augmented Generation (RAG) and NLP—we specialize in automating complex business processes and enhancing operational efficiency. Our solutions leverage cutting-edge technologies, including transformer models such as BERT and LLama, integrated seamlessly into Azure-native pipelines or fully open-source stacks tailored precisely to your business needs and budget.
-      </p>
-    </div>
-  </section>
+<section id="about" class="py-20 px-6 md:px-0 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-6 text-center">
+      About Us
+    </h2>
+    <p class="text-lg">
+      Led by
+      <!-- wrap name + icon in a single anchor -->
+      <a href="https://www.linkedin.com/in/michal-wlodarczyk-0b17771a7/"
+         target="_blank" rel="noopener"
+         aria-label="Michał Włodarczyk on LinkedIn"
+         class="inline-flex items-center gap-1 font-semibold text-brand-dark hover:text-brand-light transition">
+        <strong>Michał&nbsp;Włodarczyk</strong>
+        <img src="assets/linkedin-logo.svg"
+             alt="LinkedIn logo"
+             class="h-5 w-5"/>
+      </a>
+      — an experienced AI/ML engineer with expertise in generative AI, Retrieval-Augmented Generation (RAG) and NLP—we specialize in automating complex business processes and enhancing operational efficiency. Our solutions leverage cutting-edge technologies, including transformer models such as BERT and LLaMA, integrated seamlessly into Azure-native pipelines or fully open-source stacks tailored precisely to your business needs and budget.
+    </p>
+  </div>
+</section>
+
 
   <!-- ======== Services ========= -->
   <section id="services" class="py-20 px-6 md:px-0 bg-gray-50">
@@ -189,10 +203,19 @@
     </div>
   </section>
 
-  <!-- ======== Footer ========= -->
-  <footer class="py-6 text-center text-sm bg-black text-white/70">
-    © <span id="year"></span> MW AI Solutions · Piotrków Trybunalski, PL
-  </footer>
+<!-- ======== Footer ========= -->
+<footer class="py-6 text-center text-sm bg-black text-white/70">
+  © <span id="year"></span> MW AI Solutions · Piotrków Trybunalski, PL
+  <a href="https://www.linkedin.com/in/michal-wlodarczyk-0b17771a7/"
+     target="_blank" rel="noopener"
+     aria-label="LinkedIn"
+     class="inline-flex ml-2 items-center align-middle hover:opacity-80 transition">
+    <img src="assets/linkedin-logo.svg"
+         alt="LinkedIn logo"
+         class="h-5 w-5 inline-block"/>
+  </a>
+</footer>
+
 
   <script>
     // grab elements
