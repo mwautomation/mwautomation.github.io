@@ -36,11 +36,13 @@
       scroll-padding-top: 4rem;
     }
   </style>
+  <!-- SEO: tell crawlers about the English counterpart -->
+  <link rel="alternate" hreflang="en" href="/index-en.html">
 </head>
 
 <body class="font-sans text-gray-700 leading-relaxed">
 
-  <!-- ======== Header / Nav ========= -->
+   <!-- ======== Header / Nav ========= -->
   <header class="fixed inset-x-0 top-0 z-50 h-16 bg-brand-dark shadow-md">
     <div class="max-w-6xl mx-auto flex items-center justify-between h-full px-4">
       <a href="#" class="flex items-center gap-3 text-lg font-bold text-white">
@@ -48,11 +50,21 @@
         <span class="hidden sm:inline whitespace-nowrap tracking-wide">MW AI Solutions</span>
       </a>
 
-      <nav class="hidden md:flex gap-6 text-white font-medium">
+     <!-- desktop nav with inverted-hover language button -->
+      <nav class="hidden md:flex gap-6 items-center text-white font-medium">
         <a href="#about"    class="hover:text-brand-light">O nas</a>
         <a href="#services" class="hover:text-brand-light">Usługi</a>
         <a href="#process"  class="hover:text-brand-light">Współpraca</a>
         <a href="#contact"  class="hover:text-brand-light">Kontakt</a>
+        <a href="/index-en.html"
+           class="px-3 py-1 rounded-full bg-gradient-to-r from-brand-light via-brand to-brand-dark text-white font-semibold transition-all duration-200 hover:bg-transparent hover:border-2 hover:border-brand-light hover:text-brand-light">
+          <span aria-hidden="true">🇬🇧</span>
+          <span class="sr-only">English</span>
+          <span class="hidden lg:inline">EN</span>
+        </a>
+      </nav>
+
+        </a>
       </nav>
 
       <!-- Mobile hamburger -->
@@ -99,10 +111,10 @@
       <a href="#services" class="hover:text-brand-light">Usługi</a>
       <a href="#process"  class="hover:text-brand-light">Współpraca</a>
       <a href="#contact"  class="hover:text-brand-light">Kontakt</a>
-      <a href="/index.html" class="hover:text-brand-light">🇬🇧 English</a> |
-      <a href="/index-pl.html" class="hover:text-brand-light">🇵🇱 Polski</a>
+      <a href="/index-en.html" class="hover:text-brand-light">🇬🇧 English</a>
     </nav>
   </div>
+
 
   <!-- ======== Hero ========= -->
   <section id="hero" class="min-h-[75vh] flex flex-col items-center justify-center text-center px-4 text-white bg-gradient-to-r from-brand-light via-brand to-brand-dark mt-16">
