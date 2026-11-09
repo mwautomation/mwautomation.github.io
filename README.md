@@ -29,6 +29,12 @@ JavaScript, the native HTML form remains usable. LinkedIn offers another contact
 Google Fonts provides DM Sans and Manrope, with local sans-serif fallbacks.
 Logo and social preview artwork remain in `assets/`.
 
+`assets/grok-logomark.svg` is an unchanged copy of the supplied
+`Grok_Logomark_Dark.svg` from the official Grok asset pack. It identifies the
+tool used in the agent integration service and links to the Grok Bot product
+page. It does not indicate a partnership or endorsement. Preserve the original
+mark and follow <https://x.ai/legal/brand-guidelines> when updating it.
+
 ## Browser checks
 
 Install Python development dependencies `playwright` and `html5lib`, then run
