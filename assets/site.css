@@ -364,24 +364,25 @@ h3 {
 .services {
   background: #eef1ed;
 }
+.services .section-heading,
 .service-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 40px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  column-gap: 48px;
+}
+.service-row {
+  align-items: start;
   padding: 28px 0;
   border-top: 1px solid #cdd5cf;
 }
 .service-row h3 {
   font-size: 23px;
+  line-height: 1.4;
 }
 .service-row p {
   color: var(--muted);
   font-size: 16px;
   line-height: 1.6;
-}
-.service-row .benefit {
-  margin-top: 10px;
-  color: var(--ink);
 }
 .tool-link {
   display: inline-flex;
@@ -781,19 +782,15 @@ h3 {
 .diagram-bottom .status-dot {
   flex-shrink: 0;
 }
-.portrait-placeholder {
+.founder-portrait {
+  display: block;
   width: 100%;
+  height: auto;
   max-width: 280px;
   aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: center;
-  background: #e7eef7;
+  object-fit: cover;
   border: 1px solid #cbd8e7;
   border-radius: 6px;
-  font-family: var(--serif);
-  font-size: 88px;
-  letter-spacing: -6px;
-  color: var(--ink);
 }
 .founder-details {
   min-width: 0;
@@ -899,7 +896,9 @@ h3 {
   .founder-grid {
     grid-template-columns: 1fr;
   }
+  .services .section-heading,
   .service-row {
+    grid-template-columns: minmax(0, 1fr);
     gap: 18px;
   }
   .footer-links {

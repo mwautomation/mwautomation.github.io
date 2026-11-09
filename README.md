@@ -38,11 +38,11 @@ arrangements are not inferred from public provider policies.
 
 ## Founder portrait
 
-The `.portrait-placeholder` element in each homepage is a decorative HTML/CSS
-monogram, not a photograph. To add a real portrait, replace this element with an
-image of Michał, using a descriptive localized `alt`, a 4:5 aspect ratio,
-`object-fit: cover`, and a maximum width of 280px. Use the same image on both
-pages, include explicit dimensions, and optimize the supplied file for the web.
+Both homepages use the supplied photograph in `assets/michal-wlodarczyk.png`,
+copied without changing the original image. The `.founder-portrait` styling
+displays it at a maximum width of 280px in a 4:5 frame. Localized alternative
+text, explicit dimensions and lazy loading are included. Replace the shared
+image and update its intrinsic dimensions in both pages when changing portraits.
 
 Google Fonts provides DM Sans and Manrope, with local sans-serif fallbacks.
 Logo and social preview artwork remain in `assets/`.
