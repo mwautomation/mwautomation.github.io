@@ -381,6 +381,25 @@ h3 {
   margin-top: 10px;
   color: var(--ink);
 }
+.tool-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.tool-link img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+.tool-link:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
 .founder-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
