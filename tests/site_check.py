@@ -5,6 +5,8 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import tempfile
 import threading
+import re
+import hashlib
 
 import html5lib
 from playwright.sync_api import sync_playwright
@@ -145,8 +147,11 @@ def check_form(page, origin, route):
 
 for route in PAGES:
     parser = html5lib.HTMLParser(strict=False)
-    parser.parse((ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8"))
+    html = (ROOT / route.lstrip("/") / "index.html").read_text(encoding="utf-8")
+    parser.parse(html)
     assert not parser.errors, (route, parser.errors)
+    css_revision = hashlib.sha256((ROOT / "assets/site.css").read_bytes()).hexdigest()[:12]
+    assert f'/assets/site.css?v={css_revision}' in html, (route, "stale stylesheet revision")
 print("HTML valid: all four pages", flush=True)
 server = ThreadingHTTPServer(("127.0.0.1", 0), partial(QuietHandler, directory=str(ROOT)))
 origin = f"http://127.0.0.1:{server.server_port}"
@@ -207,6 +212,22 @@ try:
             assert fallback.locator("#name[required], #email[required], #message[required]").count() == 3
             fallback.close()
         native.close()
+        # A cached stylesheet without the portrait rule used to keep the image's
+        # full 1402px HTML height while shrinking its width to fit the grid.
+        stale_css = (ROOT / "assets/site.css").read_text(encoding="utf-8")
+        stale_css = re.sub(r"\.founder-portrait\s*\{[^}]*\}", "", stale_css)
+        stale_css = re.sub(r"(?m)^img\s*\{[^}]*\}", "img { max-width: 100%; }", stale_css)
+        page.route("**/assets/site.css*", lambda r: r.fulfill(body=stale_css, content_type="text/css"))
+        for route in ["/", "/en/"]:
+            for width in [320, 1440]:
+                page.set_viewport_size({"width": width, "height": 1000})
+                page.goto(origin + route)
+                check_links_and_images(page)
+                image = page.locator(".founder-portrait").bounding_box()
+                assert image["height"] <= 351
+                assert abs(image["height"] / image["width"] - 1.25) < .01
+        page.unroute("**/assets/site.css*")
+        print("Portrait proportions preserved with a stale stylesheet.", flush=True)
         assert not errors, errors
         browser.close()
         print("200% reflow, native form fallback and JavaScript checks passed.", flush=True)
