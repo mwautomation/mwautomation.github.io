@@ -7,7 +7,7 @@
         sending: "Wysyłanie…",
         success: "Dziękuję. Wiadomość została wysłana.",
         failure:
-          "Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz na LinkedIn.",
+          "Nie udało się wysłać wiadomości. Twoja treść pozostała w formularzu — spróbuj ponownie.",
       }
     : {
         required: "Please complete this field.",
@@ -15,7 +15,7 @@
         sending: "Sending…",
         success: "Thank you. Your message has been sent.",
         failure:
-          "Your message could not be sent. Please try again or contact me on LinkedIn.",
+          "Your message could not be sent. Your text is still in the form — please try again.",
       };
   document.querySelector("#year").textContent = new Date().getFullYear();
   const dialog = document.querySelector("#mobileMenu");
@@ -52,9 +52,12 @@
     if (event.matches && dialog.open) close();
   });
   const form = document.querySelector("#contactForm");
+  if (!form) return;
   const status = document.querySelector("#formStatus");
   const button = form.querySelector("[type=submit]");
-  const idleLabel = button.textContent;
+  const idleContent = [...button.childNodes].map((node) =>
+    node.cloneNode(true),
+  );
   const fields = [...form.querySelectorAll("input, textarea")];
   const validate = (field) => {
     field.setCustomValidity("");
@@ -98,7 +101,9 @@
       clearTimeout(timeout);
       form.removeAttribute("aria-busy");
       button.disabled = false;
-      button.textContent = idleLabel;
+      button.replaceChildren(
+        ...idleContent.map((node) => node.cloneNode(true)),
+      );
     }
   });
   // Keep native HTML validation available when JavaScript is unavailable.
