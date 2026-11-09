@@ -3,6 +3,9 @@
 Static, bilingual consultancy website. Polish is served at `/`, English at `/en/`.
 Both pages share `assets/site.css` and `assets/site.js`. No build or production
 JavaScript dependencies are required. GitHub Pages can serve the repository directly.
+Stylesheet links on all four pages include the first 12 hexadecimal characters
+of the CSS file's SHA-256 hash as `?v=...`. After changing the CSS, update this
+revision in all four links to avoid stale browser styles. Browser checks verify it.
 Privacy notices are served at `/polityka-prywatnosci/` and `/en/privacy/` with
 links from the form and footer. They reuse the same navigation and styles.
 
@@ -41,8 +44,9 @@ arrangements are not inferred from public provider policies.
 Both homepages use the supplied photograph in `assets/michal-wlodarczyk.png`,
 copied without changing the original image. The `.founder-portrait` styling
 displays it at a maximum width of 280px in a 4:5 frame. Localized alternative
-text, explicit dimensions and lazy loading are included. Replace the shared
-image and update its intrinsic dimensions in both pages when changing portraits.
+text and lazy loading are included. The HTML dimensions are the display size
+(280 × 350), and an inline automatic height preserves proportions even when a
+browser has cached an older stylesheet. Keep this fallback when replacing the photo.
 
 Google Fonts provides DM Sans and Manrope, with local sans-serif fallbacks.
 Logo and social preview artwork remain in `assets/`.
