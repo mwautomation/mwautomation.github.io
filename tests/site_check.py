@@ -53,6 +53,11 @@ def check_links_and_images(page):
         else:
             target = ROOT / unquote(url.path).lstrip("/")
             assert target.exists(), str(target)
+    for image in page.locator("img").all():
+        if image.get_attribute("loading") == "lazy":
+            image.scroll_into_view_if_needed()
+        image.evaluate("image => image.decode()")
+    page.evaluate("window.scrollTo({top: 0, behavior: 'instant'})")
     assert page.locator("img").evaluate_all("nodes => nodes.every(i => i.complete && i.naturalWidth > 0)")
 
 
@@ -76,9 +81,21 @@ def check_homepage(page, width, privacy):
     assert page.locator("#contactForm").get_attribute("action") == "https://formspree.io/f/mgvkjvge"
     assert page.locator("a[href^='mailto:']").count() == 0
     assert page.locator("a[href*='linkedin.com']").count() == 4
-    portrait = page.locator(".portrait-placeholder").bounding_box()
+    assert page.locator(".portrait-placeholder, .benefit").count() == 0
+    portrait_image = page.locator(".founder-portrait")
+    assert portrait_image.get_attribute("alt")
+    assert portrait_image.evaluate("image => image.complete && image.naturalWidth > 0")
+    portrait = portrait_image.bounding_box()
     assert portrait["width"] <= 281
     assert abs(portrait["height"] / portrait["width"] - 1.25) < .01
+    for service in page.locator(".service-row").all():
+        assert service.locator("p").count() == 1
+        if width > 620:
+            title = service.locator("h3").bounding_box()
+            description = service.locator(".service-description").bounding_box()
+            intro = page.locator(".services .section-heading > p").bounding_box()
+            assert abs(title["y"] - description["y"]) < 1
+            assert abs(description["x"] - intro["x"]) < 1
     submit = page.locator("button[type=submit]").bounding_box()
     assert submit["height"] >= 56
     assert abs(submit["width"] - page.locator("#contactForm").bounding_box()["width"]) < 1
@@ -159,6 +176,9 @@ try:
                     assert page.locator(".privacy-page").evaluate("n => parseFloat(getComputedStyle(n).fontSize) >= 16")
                 name = "home" if privacy else "privacy"
                 page.screenshot(path=str(SHOTS / f"{lang}-{name}-{width}.png"), full_page=True)
+                if privacy and width in [360, 1440]:
+                    page.locator("#services").screenshot(path=str(SHOTS / f"{lang}-services-{width}.png"))
+                    page.locator("#about").screenshot(path=str(SHOTS / f"{lang}-founder-{width}.png"))
             page.emulate_media(reduced_motion="reduce")
             assert page.evaluate("getComputedStyle(document.documentElement).scrollBehavior") == "auto"
             page.emulate_media(reduced_motion="no-preference")
